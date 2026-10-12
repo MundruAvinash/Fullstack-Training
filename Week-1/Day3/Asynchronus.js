@@ -1,28 +1,28 @@
 //creating Asynchronous by using setTimeout
 
-// function prepareFood (next)
-// {
-//     setTimeout(()=>{
-//         console.log('Food is prepared');
-//          next();
-//     },3000);
-// }
-// function eatFood(next){
-//      setTimeout(()=>{
-//         console.log('Food is eaten');
-//          next();
-//     },2000);
-// }
-// function goToSchool(){ 
-//      setTimeout(()=>{
-//         console.log('went to the school');
-//     },1500);
-// }
-// prepareFood(()=>{
-//    eatFood(()=>{
-//     goToSchool();
-//    });
-// });
+function prepareFood (next)
+{
+    setTimeout(()=>{
+        console.log('Food is prepared');
+         next();
+    },3000);
+}
+function eatFood(next){
+     setTimeout(()=>{
+        console.log('Food is eaten');
+         next();
+    },2000);
+}
+function goToSchool(){ 
+     setTimeout(()=>{
+        console.log('went to the school');
+    },1500);
+}
+prepareFood(()=>{
+   eatFood(()=>{
+    goToSchool();
+   });
+});
 
 //using promises
 
@@ -83,4 +83,43 @@ prepareFood().then((value)=>{
 }).finally(()=>{
     console.log("all promises resovle or rejected ")
 })
+
+// callback
+
+function getUser(callback) {
+
+    console.log("Fetching user...");
+
+    setTimeout(() => {
+
+        const user = {
+            id: 101,
+            name: "Avinash"
+        };
+
+        callback(user);
+
+    }, 2000);
+}
+
+
+function displayUser(user) {
+
+    console.log("User received");
+    console.log("ID:", user.id);
+    console.log("Name:", user.name);
+
+}
+
+
+getUser(displayUser);
+
+//async/await
+
+async function getData() {
+
+    const result = await promise;
+
+    console.log(result);
+}
 

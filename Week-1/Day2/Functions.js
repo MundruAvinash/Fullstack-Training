@@ -1,103 +1,92 @@
-function add (a,b){
-    return a + b;
+//Day 2 - Functions
+function greet(name){             //A parameter is a variable defined in a func declaration that receives a value when the func is called
+    console.log("Hello"+name);        //name - parameter
 }
-console.log(add(10,30));
+greet();
+greet("Arjun");                      // Arjun - argument 
 
-//Arrow Function
-const Add = (a, b) => {
-    return a + b;
-};
-console.log(Add(10,40));
 
-//Default Parameters
-
-function greek (name= "Avinash") {
-    console.log(`Hello ${name}`)
+const data = function(){
+    console .log("Welcome to XpressGoShare..!")
 }
-greek();
- 
-//Rest perameters
+data();
 
-function add (num1,num2,num3,...restoftheparameters ){
-    console.log(restoftheparameters)
-    return num1+num2+num3+restoftheparameters[0];
+
+function calSalary(salary,bonus){
+    return(salary + bonus)
 }
-const result = add(10,20,30,40,50,60);
-console.log(result);
+const tot = calSalary(35500,5784.50);
+console.log(tot);
 
-//scope
-let name = "Avinash";
 
-function Greek (){
-   console.log(name)
+//Arrow Func
+const num = [897,85,9641,789715];
+const cubic = num.map(num=>num*3);
+console.log(cubic);
+
+
+//Default Param - default parameter provides a fallback value when an argument is not provided.
+function totalPrice(price,tax=15){
+    return price+(price*tax/100)
 }
-Greek();
+const price = totalPrice(5555,18);
+console.log(price);
 
-//closures
 
+//Closures - occurs when an inner function remembers and can access variables from its outer function even after the outer function has finished executing.
 function outer(){
-    let count = 0;
-
+    let msg = "Simplify Learning"
     function inner(){
-        count++;
-        console.log(count);
+        console.log(msg);
     }
-    return inner; 
-}
-
-const counter = outer();
-
-counter();
-counter();
-counter();
-
-//parameters
-
-function greet(name) {
-    console.log(`Hello ${name}`);
-}
-
-greet("Avinash"); //Avinash is a arguments 
-
-//scope
-//1.Global scope
-let Name = "Avinash";
-function Grade(){
-    console.log(Name);
-}
-Grade();
-//2.Function scope
-function alert(){
-    let message = "Hello";
-    console.log(message);
-}
-alert();
-//Block Scope
-
-if(true) {
-    let age = 22;
-    console.log(age);
-}
-// Closure
-function outer() {
-    let count = 0;
-
-    function inner() {
-        count++;
-        console.log(count);
-    }
-
     return inner;
 }
-
-const Counter = outer();
-
-Counter();
-Counter();
-Counter();
+const greet1 = outer();
+greet1();
 
 
-//assignment 
+function counter(){
+    let count = 0;
+     return function(){
+        count ++;
+        return count;
+     };
+}
+const increment = counter();
+console.log(increment());
+console.log(increment());
+console.log(increment());
+
+
+//Object
+const employee = {
+    id: 101,
+    name: "Ravi",
+    department: "IT",
+    salary: 50000,
+    active: true
+};
+console.log(employee.name);
+console.log(employee.salary);
+
+
+//Spread - spread operator expands the values.
+const numbers1 = [1, 2, 3];
+const numbers2 = [4, 5, 6];
+const number3 = [...numbers1, ...numbers2];
+console.log(number3);
+
+//map()
+const emp = [
+    {name: "Prabhas", role: "Testing", salary: 100000},
+    {name: "Arjun", role: "Developer", salary:80000}
+];
+const res = emp.map(emp=>({
+    ...emp,
+    CTC: emp.salary*12
+}))
+console.log(res);
+
 
 
 const employees = [
@@ -110,180 +99,43 @@ const employees = [
     { id: 7, name: "Arjun", department: "IT", salary: 75000 },
     { id: 8, name: "Sneha", department: "Finance", salary: 58000 },
     { id: 9, name: "Vikram", department: "Marketing", salary: 65000 },
-    { id: 10, name: "Anjali", department: "IT", salary: 62000 },
-
-    { id: 11, name: "Rohit", department: "HR", salary: 47000 },
-    { id: 12, name: "Pooja", department: "Finance", salary: 70000 },
-    { id: 13, name: "Suresh", department: "IT", salary: 68000 },
-    { id: 14, name: "Meena", department: "Marketing", salary: 50000 },
-    { id: 15, name: "Naveen", department: "HR", salary: 56000 },
-    { id: 16, name: "Divya", department: "Finance", salary: 62000 },
-    { id: 17, name: "Manoj", department: "IT", salary: 72000 },
-    { id: 18, name: "Swathi", department: "Marketing", salary: 54000 },
-    { id: 19, name: "Tarun", department: "HR", salary: 49000 },
-    { id: 20, name: "Lakshmi", department: "Finance", salary: 66000 },
-
-    { id: 21, name: "Sai", department: "IT", salary: 80000 },
-    { id: 22, name: "Neha", department: "HR", salary: 53000 },
-    { id: 23, name: "Varun", department: "Finance", salary: 75000 },
-    { id: 24, name: "Kavya", department: "Marketing", salary: 59000 },
-    { id: 25, name: "Ajay", department: "IT", salary: 61000 },
-    { id: 26, name: "Deepika", department: "HR", salary: 51000 },
-    { id: 27, name: "Harish", department: "Finance", salary: 68000 },
-    { id: 28, name: "Bhavya", department: "Marketing", salary: 63000 },
-    { id: 29, name: "Mohan", department: "IT", salary: 57000 },
-    { id: 30, name: "Keerthi", department: "HR", salary: 55000 },
-
-    { id: 31, name: "Prakash", department: "Finance", salary: 82000 },
-    { id: 32, name: "Asha", department: "Marketing", salary: 52000 },
-    { id: 33, name: "Chandra", department: "IT", salary: 74000 },
-    { id: 34, name: "Nandini", department: "HR", salary: 58000 },
-    { id: 35, name: "Gopal", department: "Finance", salary: 64000 },
-    { id: 36, name: "Teja", department: "Marketing", salary: 61000 },
-    { id: 37, name: "Ramesh", department: "IT", salary: 90000 },
-    { id: 38, name: "Ishita", department: "HR", salary: 60000 },
-    { id: 39, name: "Mahesh", department: "Finance", salary: 71000 },
-    { id: 40, name: "Riya", department: "Marketing", salary: 57000 },
-
-    { id: 41, name: "Sanjay", department: "IT", salary: 85000 },
-    { id: 42, name: "Varsha", department: "HR", salary: 62000 },
-    { id: 43, name: "Rakesh", department: "Finance", salary: 78000 },
-    { id: 44, name: "Nisha", department: "Marketing", salary: 66000 },
-    { id: 45, name: "Venkat", department: "IT", salary: 67000 },
-    { id: 46, name: "Harini", department: "HR", salary: 57000 },
-    { id: 47, name: "Dinesh", department: "Finance", salary: 69000 },
-    { id: 48, name: "Madhuri", department: "Marketing", salary: 60000 },
-    { id: 49, name: "Krishna", department: "IT", salary: 78000 },
-    { id: 50, name: "Sowmya", department: "HR", salary: 54000 }
+    { id: 10, name: "Anjali", department: "IT", salary: 62000 }
 ];
 
+const employeeNames = employees.map(employee => employee.name);
+console.log(employeeNames);
 
-// ==========================================
-// TASK 1
-// GROUP EMPLOYEES BY DEPARTMENT
-// ==========================================
-
-const groupedEmployees = employees.reduce((groups, employee) => {
-
-    if (!groups[employee.department]) {
-        groups[employee.department] = [];
-    }
-
-    groups[employee.department].push(employee);
-
-    return groups;
-
-}, {});
-
-console.log("========== TASK 1 ==========");
-console.log("Employees Grouped By Department:");
-console.log(groupedEmployees);
-
-
-// ==========================================
-// TASK 2
-// CALCULATE AVERAGE SALARY BY DEPARTMENT
-// ==========================================
-
-const averageSalary = employees.reduce((result, employee) => {
-
-    if (!result[employee.department]) {
-        result[employee.department] = {
-            totalSalary: 0,
-            employeeCount: 0
-        };
-    }
-
-    result[employee.department].totalSalary += employee.salary;
-    result[employee.department].employeeCount++;
-
-    return result;
-
-}, {});
-
-console.log("========== TASK 2 ==========");
-console.log("Average Salary By Department:");
-
-Object.keys(averageSalary).forEach(department => {
-
-    const total = averageSalary[department].totalSalary;
-    const count = averageSalary[department].employeeCount;
-
-    const average = total / count;
-
-    console.log(
-        `${department}: ₹${average.toFixed(2)}`
-    );
-});
-
-
-// ==========================================
-// TASK 3
-// FIND TOP 3 HIGHEST-PAID EMPLOYEES
-// ==========================================
-
-const topThreeEmployees = [...employees]
+const topEarners = [...employees]
     .sort((a, b) => b.salary - a.salary)
     .slice(0, 3);
+console.log(topEarners);
 
-console.log("========== TASK 3 ==========");
-console.log("Top 3 Highest-Paid Employees:");
+const itEmployees = employees.filter(
+    employee => employee.department === "Sales");
+console.log(itEmployees);
 
-topThreeEmployees.forEach((employee, index) => {
+const totalSalary = employees.reduce(
+    (total, employee) => total + employee.salary,0);
 
-    console.log(
-        `${index + 1}. ${employee.name} - ₹${employee.salary}`
-    );
+const averageSalary = totalSalary / employees.length;
+console.log("Total:", totalSalary);
+console.log("Average:", averageSalary);
 
-});
+const groupedEmployees = employees.reduce(
+    (groups, employee) => {
+        if (!groups[employee.department]) {
+            groups[employee.department] = [];
+        }
+        groups[employee.department].push(employee);
+        return groups;
+    },
+    {}
+);
+console.log(groupedEmployees);
 
+const employee1 = employees.find(
+    employee => employee.name === "John");
+console.log(employee1);
 
-// ==========================================
-// TASK 4
-// SEARCH EMPLOYEE BY NAME
-// ==========================================
-
-function searchEmployee(name) {
-
-    const employee = employees.find(
-        employee =>
-            employee.name.toLowerCase() === name.toLowerCase()
-    );
-
-    if (employee) {
-
-        console.log("========== TASK 4 ==========");
-        console.log("Employee Found:");
-
-        console.log(
-            `Name: ${employee.name}`
-        );
-
-        console.log(
-            `Department: ${employee.department}`
-        );
-
-        console.log(
-            `Salary: ₹${employee.salary}`
-        );
-
-    } else {
-
-        console.log("========== TASK 4 ==========");
-        console.log("Employee not found.");
-
-    }
-}
-
-
-// ==========================================
-// TEST SEARCH
-// ==========================================
-
-searchEmployee("Avinash");
-
-// Try another employee:
-// searchEmployee("Ramesh");
-
-// Try employee who doesn't exist:
-// searchEmployee("John");
+const highEarner = employees.some(employee => employee.salary > 100000);
+console.log(highEarner);
